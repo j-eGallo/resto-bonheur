@@ -13,6 +13,24 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #242424;
+  color: rgba(255, 255, 255, 0.87);
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -89,4 +107,12 @@ button:hover {
 .logo-resto {
   width: 220px;
   height: auto;
+}
+
+
+.admin-link {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
 }

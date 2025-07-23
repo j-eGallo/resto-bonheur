@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom" // ← ajouté
 import Logo from '../assets/logo.png'
 
 export default function Home() {
@@ -38,11 +39,13 @@ export default function Home() {
 
   return (
     <div className="container" style={{ maxWidth: "600px", margin: "auto", padding: "2rem" }}>
-    <div style={{ position: "absolute", top: "20px", left: "20px" }}>
-      <img src={Logo} alt="Logo" className="logo-resto" />
-    </div>
+      <div style={{ position: "absolute", top: "20px", left: "20px" }}>
+        <img src={Logo} alt="Logo" className="logo-resto" />
+      </div>
+
       <h1 style={{ textAlign: "center" }}>Réservation</h1>
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+
+      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem", width:"100%", alignItems:"center" }}>
         <input
           type="text"
           name="nom"
@@ -83,7 +86,15 @@ export default function Home() {
         />
         <button type="submit">Réserver</button>
       </form>
+
       {message && <p style={{ marginTop: "1rem", textAlign: "center" }}>{message}</p>}
+
+      <div className="admin-link">
+        <Link to="/login">
+          <button style={{width:"100%"}}>Administration</button>
+        </Link>
+      </div>
+
     </div>
   )
 }
