@@ -59,7 +59,7 @@ export default function Dashboard() {
         </button>
       </header>
 
-      <h1>Dashboard des Réservations</h1>
+      <h1>Nos réservations</h1>
       {reservations.length === 0 ? (
         <p>Aucune réservation.</p>
       ) : (
