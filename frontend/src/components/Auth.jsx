@@ -35,21 +35,24 @@ export default function Auth() {
       <img src={Logo} alt="Logo Resto Bonheur" className="auth-logo" />
       <h2>Connexion admin</h2>
       <form onSubmit={handleSubmit} className="auth-form">
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          autoFocus
-        />
-        <input
-          type="password"
-          placeholder="Mot de passe"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            autoFocus
+          />
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Mot de passe"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
         <button type="submit">Se connecter</button>
         {error && <p className="error-message">{error}</p>}
       </form>

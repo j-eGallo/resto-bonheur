@@ -7,6 +7,7 @@ export default function Dashboard() {
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
 
   const fetchReservations = async () => {
@@ -22,18 +23,20 @@ export default function Dashboard() {
     }
   };
 
-  const deleteReservation = async (id) => {
-    if (!window.confirm("Voulez-vous vraiment supprimer cette réservation ?")) return;
-    try {
-      const res = await fetch(`http://localhost:3000/api/reservations/${id}`, {
-        method: "DELETE",
-      });
-      if (!res.ok) throw new Error("Erreur lors de la suppression");
-      setReservations(reservations.filter(r => r.id !== id));
-    } catch (err) {
-      alert(err.message);
-    }
-  };
+const deleteReservation = async (id) => {
+  if (!window.confirm("Voulez-vous vraiment supprimer cette réservation ?")) return;
+  try {
+    const res = await fetch(`http://localhost:3000/api/reservations/${id}`, {
+      method: "DELETE",
+    });
+    if (!res.ok) throw new Error("Erreur lors de la suppression");
+    setReservations(reservations.filter(r => r.id !== id));
+    setSuccessMessage("Réservation supprimée"); // ✅ ICI
+  } catch (err) {
+    alert(err.message);
+  }
+};
+
 
   const handleLogout = () => {
     localStorage.removeItem("token"); 
@@ -60,6 +63,7 @@ export default function Dashboard() {
       </header>
 
       <h1>Nos réservations</h1>
+      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
       {reservations.length === 0 ? (
         <p>Aucune réservation.</p>
       ) : (
@@ -84,6 +88,7 @@ export default function Dashboard() {
                 <td>{personnes}</td>
                 <td>
                   <button 
+                    className="delete-btn"
                     onClick={() => deleteReservation(id)} 
                     style={{ backgroundColor: "red", color: "white", border: "none", padding: "0.3rem 0.6rem", borderRadius: "3px", cursor: "pointer" }}
                   >

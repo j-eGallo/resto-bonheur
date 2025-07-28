@@ -26,7 +26,7 @@ export default function Home() {
         body: JSON.stringify(formData),
       })
       if (response.ok) {
-        setMessage("Réservation envoyée avec succès !")
+        setMessage("Réservation confirmée");
         setFormData({ nom: "", email: "", date: "", heure: "", personnes: 1 })
       } else {
         setMessage("Erreur lors de la réservation.")
